@@ -66,14 +66,14 @@ Useful options:
 
 ### Google Colab
 
-Open `notebooks/GBA_3DBAG_Colab.ipynb` in Colab, set the repository path, mount Drive,
+Open `GBA_3DBAG_Colab.ipynb` in Colab, set the repository path, mount Drive,
 and run the final cell. Outputs are written to:
 
 ```
 /content/drive/MyDrive/GBA_3DBAG_outputs
 ```
 
-Typical runtime is about 40–90 minutes (3DBAG tile download + GBA WFS fetch + matching),
+Typical runtime is about 40-90 minutes (3DBAG tile download + GBA WFS fetch + matching),
 depending on network speed. Colab high-RAM is recommended for the matching step.
 
 ## Definitions
@@ -96,7 +96,7 @@ For each 3DBAG building, all vertices of the LoD1.2 geometry are projected on th
 up direction; the site height is `max(z) - min(z)`, i.e. the flat-roof height shown by
 the 3DBAG LoD1.2 viewer. The site area is `b3_opp_grond`. GBA provides one LoD1 footprint
 and one height attribute per building. The two datasets are matched with the overlap-graph
-algorithm in `lib/pipeline_lib.py` (1:1, many-to-one, one-to-many, many-to-many;
+algorithm in `pipeline_lib.py` (1:1, many-to-one, one-to-many, many-to-many;
 false negatives and false positives are reported separately). Height agreement is measured
 at group level with MAE, RMSE, and MAPE.
 
@@ -131,23 +131,28 @@ Small variations in these counts are expected if the live GBA WFS changes. Use
 - Building matching uses spatial overlap groups (1:1, many-to-one, one-to-many, many-to-many).
 - False negatives are 3DBAG buildings without an accepted GBA match; false positives are
   GBA footprints without an accepted 3DBAG match.
-- The bundled `lib/pipeline_lib.py` is the comparison engine used in the original study.
+- The bundled `pipeline_lib.py` is the comparison engine used in the original study.
   Only its GBA and comparison functions are exercised by `run_pipeline.py`.
 
-## Publish to GitHub
+## Repository layout
 
-```bash
-cd GBA_3DBAG_Pipeline
-git init
-git add .
-git commit -m "GBA vs 3DBAG reproducible pipeline"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/GBA_3DBAG_Pipeline.git
-git push -u origin main
+```text
+run_pipeline.py                  end-to-end pipeline
+pipeline_lib.py              matching and comparison engine
+GBA_3DBAG_Colab.ipynb  Colab runner
+requirements.txt
+README.md
+LICENSE
 ```
 
-The notebook contains `YOUR_USERNAME` as a placeholder; replace it with your GitHub username
-(or open the notebook from the cloned repository in Colab).
+## Code availability
+
+https://github.com/farnia04/GBA_3DBAG-comparison
+
+## Citation
+
+If you use this code in a publication, please cite the repository above and the
+3DBAG and GBA data sources listed under Attribution.
 
 ## Attribution
 
