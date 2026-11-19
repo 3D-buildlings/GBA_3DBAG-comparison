@@ -103,7 +103,16 @@ reference buildings (multi-feature groups).
 - **Comparison**: 3DBAG reference = LoD1.2 site height; GBA compared = GBA own height.
   Height metrics are group-level (`MAE`, `RMSE`, `MAPE`) using the original matching
   algorithm of the study.
+## Figures
 
+python make_paper_figures.py --out /path/to/output
+python study_area_map.py --out /path/to/output
+python study_area_map.py --out /path/to/output --area "Name:min_lon,min_lat,max_lon,max_lat"
+
+# any dataset with different column names (interactive or JSON mapping):
+python make_figures_custom.py --out /path/to/output
+python make_figures_custom.py --init-map columns.json
+python make_figures_custom.py --out /path/to/output --map columns.json
 ## Method summary
 
 For each 3DBAG building, all vertices of the LoD1.2 geometry are projected on the local
@@ -171,6 +180,8 @@ pipeline_lib.py                  matching and comparison engine
 h3_analysis.py                   H3 resolution-8 density analysis
 make_paper_figures.py            paper figures from pipeline outputs
 GBA_3DBAG_Colab.ipynb            Colab runner
+make_figures_custom.py           same figures from any dataset via column mapping
+study_area_map.py                study-area map (default: Amsterdam + Utrecht)
 requirements.txt
 README.md
 LICENSE
