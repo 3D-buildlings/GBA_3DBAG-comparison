@@ -106,12 +106,17 @@ reference buildings (multi-feature groups).
 ## Figures
 
 python make_paper_figures.py --out /path/to/output
+
 python study_area_map.py --out /path/to/output
+
 python study_area_map.py --out /path/to/output --area "Name:min_lon,min_lat,max_lon,max_lat"
 
 # any dataset with different column names (interactive or JSON mapping):
+
 python make_figures_custom.py --out /path/to/output
+
 python make_figures_custom.py --init-map columns.json
+
 python make_figures_custom.py --out /path/to/output --map columns.json
 ## Method summary
 
